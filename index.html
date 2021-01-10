@@ -14,20 +14,30 @@
     <title>Timed Quiz</title>
   </head>
   <body>
-    <div class="container" style="width: 100%;">
+    <div class="container">
 
-        <div class="grid-container">
+        <div class="row">
             <!--Inroder to create a centralized box of contents-->
-            <div class="grid-item" id="left"> View high scores </div>
+            <div class="col-2" id="left"> View high scores </div>
 
-            <div class="grid-item" id="center">
-                <h1 id="main-content" style="font-weight: bold;"> Coding Quiz Challenge</h1>
-                <p id="descrip">Try to answer the follwoing code-related questions within the time limit. Keep in mind that incorrent answers will penalize your score/time by ten secods!</p>
-                <button type="button" class="btn btn-primary" id="start">Start Quiz </button>
-
+            <div class="col-8" id="center"> <!-- **************** -->
+                <h1 id="main-content" style="font-weight: bold;"> 
+                    Coding Quiz Challenge
+                </h1>
+                <p id="descrip">
+                    Try to answer the follwoing code-related questions within the time limit. Keep in mind that incorrent answers will penalize your score/time by ten secods!
+                </p>
+                    <ul class='list group' id="allOptions">
+                        <li class='list-group-item border-0 rounded .w-25' id="1">
+                            <button type="button" class="btn btn-primary" id="start">
+                                Start Quiz 
+                            </button>
+                         </li>
+                    </ul>
             </div>
 
-            <div class="grid-item" id="right"> Time: 53 </div>
+            <div class="col-2" id="right">  
+            </div>
         </div>
 
         <script src="script.js"> </script>

@@ -4,24 +4,9 @@
     padding: 0;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: 10% 80% 10%;
-    padding: 10px;
-
-    /*testing height*/
-    height: 900px;
-    width: auto;
-}
-  
-  .grid-item {
-    border: 1px solid rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    font-size: 25px; 
-  }
-
 #left{
     text-align: left;
+    padding-top: 5%;
 }
 
 #center{
@@ -31,6 +16,16 @@
 }
 
 #right{
-    text-align: right;      
+    text-align: right;   
+    padding-top: 5%;   
+}
+
+ul{
+    margin: 5%;
+    padding: 5%;
+}
+
+h2{
+    text-align: left;
 }
 
