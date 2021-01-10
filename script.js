@@ -78,7 +78,6 @@ var startQuiz = function(studentQuestion){
 
     //multiSolutions.appendChild(buttonOne));
 
-    multiSolutions.innerHTML = "";
     multiSolutions.innerHTML = "<p>" + studentQuestion.ansOne + "</p>";
         
 };
