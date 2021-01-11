@@ -62,7 +62,9 @@ var multiSolutions = document.querySelector("#center");
 var listLocation = document.querySelector("#allOptions")
 
 //Checking if the right answer was selected
-var result = "";
+var result = 0;
+
+//identifying buttons
 
 var startQuiz = function(studentQuestion){   
 
@@ -70,15 +72,15 @@ var startQuiz = function(studentQuestion){
     var question = document.getElementById("main-content");  //h1 element
     question.textContent = studentQuestion.question;
 
-    event.preventDefault();
-
     //multiple choice
     var listEl = document.createElement("li");
     listEl.classList = "list-group";
 
+    event.preventDefault();
+
     //Q1
     var buttonOne = document.createElement("button");
-    buttonOne.classList = "btn btn-primary";
+    buttonOne.classList = "btn btn-primary mt-3 rounded .w-15";
     buttonOne.textContent = studentQuestion.ansOne;
     buttonOne.setAttribute("id",1);
     listEl.appendChild(buttonOne);
@@ -86,7 +88,7 @@ var startQuiz = function(studentQuestion){
 
     //Q2
     var buttonTwo = document.createElement("button");
-    buttonTwo.classList = "btn btn-primary";
+    buttonTwo.classList = "btn btn-primary mt-3 rounded .w-15";
     buttonTwo.textContent = studentQuestion.ansTwo;
     buttonTwo.setAttribute("id",2);
     listEl.appendChild(buttonTwo);
@@ -94,7 +96,7 @@ var startQuiz = function(studentQuestion){
 
     //Q3
     var buttonThree = document.createElement("button");
-    buttonThree.classList = "btn btn-primary";
+    buttonThree.classList = "btn btn-primary mt-3 rounded .w-15";
     buttonThree.textContent = studentQuestion.ansThree;
     buttonThree.setAttribute("id",3);
     listEl.appendChild(buttonThree);
@@ -102,68 +104,74 @@ var startQuiz = function(studentQuestion){
 
     //Q4
     var buttonFour = document.createElement("button");
-    buttonFour.classList = "btn btn-primary";
+    buttonFour.classList = "btn btn-primary mt-3 rounded .w-15";
     buttonFour.textContent = studentQuestion.ansFour;
     buttonFour.setAttribute("id",4);
     listEl.appendChild(buttonFour);
     listLocation.appendChild(listEl);
 
-    //button click event
-    buttonOne.addEventListener("click",checkingSolution(studentQuestion));
-    buttonTwo.addEventListener("click",checkingSolution(studentQuestion));
-    buttonThree.addEventListener("click",checkingSolution(studentQuestion));
-    buttonFour.addEventListener("click",checkingSolution(studentQuestion));
+
+    //button click event 
+    buttonOne.addEventListener("click",taskButtonHandler);
+    buttonTwo.addEventListener("click",taskButtonHandler);
+    buttonThree.addEventListener("click",taskButtonHandler);
+    buttonFour.addEventListener("click",taskButtonHandler); 
+
 };
+
+var taskButtonHandler = function(event) {
+    // get target element from event
+    var targetEl = event.target;
+
+    alert(targetEl.id);
+ }
+  
 
 //checking solution
 var checkingSolution = function(studentAnswer){
 
-    //NOT coded yet
-    //But we are suppoed to move to the next question before showing the result for this one here
+    //event.preventDefault();
+    //Loading the second question here
 
+    //var allQuestions = [firstQuestion,secondQuestion,thirdQuestion,fourthQuestion,fifthQuestion];
+    //to loop through each question and get the final result
+    //i=1 because the first question has already been asked
+/*
+    for(var i=1; i<allQuestions.length; i++){
+        startQuiz(i);
+    };
+*/
     var quizResult;
-
-    var output = event.target.id;
-        
+      
+    /*
     if(parseInt(output) === studentAnswer.correctAns){
         quizResult = "Correct!";
+        result++;   //Add to the total score
     }else{
         quizResult = "Wrong!"
-    }
+    }*/
 
-    //showing the result of the prevous page at the bottom
-
-    //Horizontal line
-    var horizontalEl = document.createElement("hr");
-    horizontalEl.class = "text-secondary";
-    multiSolutions.appendChild(horizontalEl);
-    //result displayed
-    var examSolution = document.createElement("h2");
-    examSolution.classList = "text-secondary";
-    examSolution.textContent = quizResult;
-    multiSolutions.appendChild(examSolution);
+    //showing the result of the prevous page at the bottom 
 }
 
 //Timer function
-var counter = 10;
+var counter = 20;
 var countDown = function(){
     //Right side 
     //var rightSide = document.querySelector();
-
+    setInterval(countDown, 1000);
 
     //**************** Display the time at the top */
-    console.log(counter);
-
     var countDownClock = document.querySelector("#right");
     countDownClock.innerHTML = "Time: " + counter;
 
     counter--;
     if(counter === 0){
-        //****** Go to final score */
+        //****** Go to final score ******/
         alert("blastoff");
         clearInterval(startCountDown);
 
-        //counterDownClock.remove();
+        countDownClock.remove();
         //remove it and add up the score so far
     };
 };
@@ -172,7 +180,7 @@ var countDown = function(){
 var start = function(){
 
     //start the counter
-    var startCountDown = setInterval(countDown, 1000);
+    //countDown();
 
     //Remove intro page...
     var para = document.getElementById("descrip");
@@ -183,5 +191,12 @@ var start = function(){
 };
 
 buttonStart.addEventListener("click", start);
+
+/*
+document.querySelector(".button").onclick = test;
+
+var test = function(){
+    alert("It's working");
+}*/
 
 
