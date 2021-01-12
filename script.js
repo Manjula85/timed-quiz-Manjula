@@ -74,13 +74,16 @@ var checkingSolution = function(event){
     var targetEl = event.target.id;
     targetEl = parseInt(targetEl);
 
+
+    console.dir(event);
+    //localStorage.setItem()
+
     //console.log("target: " + targetEl);
     //console.log("quiz answer: " + quizAnswer);
     
     if(targetEl === quizAnswer){
         quizResult = "Correct!";
         nextQuestion++;   //Add to the total score
-        //alert("here");
     }else{
         quizResult = "Wrong!"
     }
@@ -262,11 +265,6 @@ var start = function(){
 
 buttonStart.addEventListener("click", start);
 
-/*
-document.querySelector(".button").onclick = test;
 
-var test = function(){
-    alert("It's working");
-}*/
 
 
