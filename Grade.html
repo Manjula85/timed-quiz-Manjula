@@ -10,37 +10,48 @@
 
     <!--CSS stylesheet link-->
     <link rel="stylesheet" href="style.css">
-
+    
     <title>Timed Quiz</title>
   </head>
   <body>
     <div class="container">
 
-        <div class="row">
+        <div class="row"> //text-left not working
             <!--Inroder to create a centralized box of contents-->
-            <div class="col-2" id="left"><a href="Grade.html"><label style="color: black;">View high scores</label></a></div>
+            <div class="col-2" id="left"></div>
 
             <div class="col-8" id="center"> <!-- **************** -->
                 <h1 id="main-content" style="font-weight: bold;"> 
-                    Coding Quiz Challenge
+                    All Done!
                 </h1>
-                <p id="descrip">
-                    Try to answer the follwoing code-related questions within the time limit. Keep in mind that incorrent answers will penalize your score/time by ten secods!
+                <p id="comment">
+                    Your final score is
                 </p>
-                    <ul class='list group' id="allOptions">
-                        <li class='list-group-item border-0 rounded .w-25' id="begin">
-                            <button type="button" class="btn btn-primary" id="start">
-                                Start Quiz 
-                            </button>
-                         </li>
-                    </ul>
+                    <form action="/action_page.php">
+                        <div class="form-group">
+                            <label for="usr">Enter initials: <input type="text" class="form-control" id="usr" name="username">
+                        
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            </label>
+                        </div>
+                    </form>
             </div>
 
-            <div class="col-2" id="right">Time: 0
+            <div class="col-2" id="right">  
             </div>
         </div>
 
-        <script src="script.js"> </script>
+        <script> 
+
+            // To retrieve
+            var storedData;   
+            storedData = localStorage.getItem("Total");
+
+            console.log(JSON.parse(storedData));
+
+            //console.log("Retrieved: "+JSON.parse(storedData).name);
+
+        </script>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

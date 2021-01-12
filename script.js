@@ -62,10 +62,13 @@ var multiSolutions = document.querySelector("#center");
 var listLocation = document.querySelector("#allOptions")
 
 //Keeping track of the questions
-var nextQuestion = 0;
+var nextQuestion = 1;  //because the 1st question was already asked
 
 //So that I can show it at the bottom of the questions
 var quizResult = 0;
+
+//view Total
+var total=0;
 
 //checking solution
 var checkingSolution = function(event){
@@ -74,16 +77,15 @@ var checkingSolution = function(event){
     var targetEl = event.target.id;
     targetEl = parseInt(targetEl);
 
-
-    console.dir(event);
-    //localStorage.setItem()
-
     //console.log("target: " + targetEl);
     //console.log("quiz answer: " + quizAnswer);
     
     if(targetEl === quizAnswer){
         quizResult = "Correct!";
         nextQuestion++;   //Add to the total score
+        total++;
+        console.log("Selected: "+targetEl+". Quiz answer: "+quizAnswer);
+        console.log("This is the total now: " + total);
     }else{
         quizResult = "Wrong!"
     }
@@ -102,7 +104,12 @@ var checkingSolution = function(event){
     if(nextQuestion <= allQuestions.length){
         continueQuestions(allQuestions[nextQuestion]);
     }else{
-        //meaning it has reached the end go to scoring
+        //GO to the Grades page!
+        window.location.href="Grade.html";
+
+        //meaning it has reached the end and go get the scoring
+        localStorage.setItem("Total",JSON.stringify(total));
+
     }
 
     //showing the quizResult of the prevous page at the bottom 
@@ -157,6 +164,9 @@ var startQuiz = function(studentQuestion){
 
     //Pass correct answer
     quizAnswer = studentQuestion.correctAns;
+
+    //Adding to local storage
+
 
     //button click event 
     buttonOne.addEventListener("click",checkingSolution);
