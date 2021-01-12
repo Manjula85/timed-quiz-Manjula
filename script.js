@@ -62,7 +62,7 @@ var multiSolutions = document.querySelector("#center");
 var listLocation = document.querySelector("#allOptions")
 
 //Keeping track of the questions
-var nextQuestion = 1;  //because the 1st question was already asked
+var nextQuestion = 0;  //because the 1st question was already asked
 
 //So that I can show it at the bottom of the questions
 var quizResult = 0;
@@ -79,21 +79,21 @@ var checkingSolution = function(event){
 
     //console.log("target: " + targetEl);
     //console.log("quiz answer: " + quizAnswer);
+    //nextQuestion++;   //Move to the next question
     
     if(targetEl === quizAnswer){
-        quizResult = "Correct!";
-        nextQuestion++;   //Add to the total score
-        total++;
+        quizResult = "Correct!";        
+        total++; //Add to the total score
         console.log("Selected: "+targetEl+". Quiz answer: "+quizAnswer);
         console.log("This is the total now: " + total);
     }else{
         quizResult = "Wrong!"
     }
+    
 
     //remove line (so there aren't multiples of them).
     line.remove();
     resOutput.remove();
-
 
     //Loading the second question here
     var allQuestions = [firstQuestion,secondQuestion,thirdQuestion,fourthQuestion,fifthQuestion];
@@ -101,7 +101,7 @@ var checkingSolution = function(event){
     //i=1 because the first question has already been asked
 
     //removing the existing buttons first
-    if(nextQuestion <= allQuestions.length){
+    if(nextQuestion<allQuestions.length){
         continueQuestions(allQuestions[nextQuestion]);
     }else{
         //GO to the Grades page!
@@ -109,7 +109,6 @@ var checkingSolution = function(event){
 
         //meaning it has reached the end and go get the scoring
         localStorage.setItem("Total",JSON.stringify(total));
-
     }
 
     //showing the quizResult of the prevous page at the bottom 
@@ -224,7 +223,6 @@ var continueQuestions = function(studentQuestion,lastAns){
     listEl.appendChild(resOutput);
     listLocation.appendChild(listEl);
   
-
     //************************** */
 
     //Pass correct answer

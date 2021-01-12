@@ -16,7 +16,7 @@
   <body>
     <div class="container">
 
-        <div class="row"> //text-left not working
+        <div class="row">
             <!--Inroder to create a centralized box of contents-->
             <div class="col-2" id="left"></div>
 
@@ -27,12 +27,11 @@
                 <p id="comment">
                     Your final score is
                 </p>
-                    <form action="/action_page.php">
+                    <form class="form-inline" action="/action_page.php">
                         <div class="form-group">
-                            <label for="usr">Enter initials: <input type="text" class="form-control" id="usr" name="username">
-                        
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            </label>
+                            <label for="usr" class="mr-3">Enter initials: </label> 
+                            <input type="text" class="form-control  mr-3" id="usr" name="username">                        
+                            <button type="submit" class="btn btn-primary" id="submit">Submit</button>                            
                         </div>
                     </form>
             </div>
@@ -49,7 +48,12 @@
 
             console.log(JSON.parse(storedData));
 
-            //console.log("Retrieved: "+JSON.parse(storedData).name);
+            var addHighScore = function(){
+                //localStorage.setItem()
+            }
+
+            var submitButton = document.querySelector("#submit");
+            submitButton.addEventListener("click",addHighScore);
 
         </script>
 
