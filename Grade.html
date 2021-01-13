@@ -57,10 +57,13 @@
                 var userInitialsInput = document.querySelector("input[name='username']").value;
 
                 //console.log("Initials were "+ userInitialsInput);
+                var localStorageDataRange = window.localStorage.key.length;
+                console.log("Key length: "+ localStorageDataRange);
+                
 
                 localStorage.setItem("Name",JSON.stringify(userInitialsInput));
-                window.location.href = "high-scores.html"
-            }
+                window.location.href = "high-scores.html";
+            };
 
             var formEl = document.querySelector("#nameForm");
             formEl.addEventListener("submit",addHighScore);

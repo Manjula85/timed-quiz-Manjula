@@ -66,7 +66,7 @@ var finalGrade = 0;
 var startCountDown;
 
 //Timer function
-var counter = 5;
+var counter = 10;
 
 //checking solution
 var checkingSolution = function(event){
@@ -85,7 +85,7 @@ var checkingSolution = function(event){
     }else{
         quizResult = "Wrong!"
         //Penalize time for making an error!
-        counter--;
+        counter = counter - 5;
     }
 
     //remove line (so there aren't multiples of them).
@@ -226,9 +226,10 @@ var countDown = function(){
     var countDownClock = document.querySelector("#right");
     countDownClock.innerHTML = "Time: " + counter;
     
-    if(counter === 0){
+    if(counter <= 0){
         //Go to grades page immediately
         clearInterval(startCountDown);
+        localStorage.setItem("Total",JSON.stringify(finalGrade));
         window.location.href="grade.html";
     };
 };
