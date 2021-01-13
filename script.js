@@ -60,7 +60,13 @@ var nextQuestion = 0;
 var quizResult = 0;
 
 //Final grade
-finalGrade = 0;
+var finalGrade = 0;
+
+//for the timer
+var startCountDown;
+
+//Timer function
+var counter = 5;
 
 //checking solution
 var checkingSolution = function(event){
@@ -78,6 +84,8 @@ var checkingSolution = function(event){
         console.log("This is the Final grade stuff: "+ finalGrade);
     }else{
         quizResult = "Wrong!"
+        //Penalize time for making an error!
+        counter--;
     }
 
     //remove line (so there aren't multiples of them).
@@ -86,24 +94,17 @@ var checkingSolution = function(event){
 
     //Loading the second question here
     var allQuestions = [firstQuestion,secondQuestion,thirdQuestion,fourthQuestion,fifthQuestion];
-    //to loop through each question and get the final total
-    //i=1 because the first question has already been asked
 
-    //removing the existing buttons first
+    //to loop through each question and get the final total
     if(nextQuestion < allQuestions.length){
         continueQuestions(allQuestions[nextQuestion]);
     }else{
         localStorage.setItem("Total",JSON.stringify(finalGrade));
         window.location.href = "grade.html";
     }
-
-    //showing the quizResult of the prevous page at the bottom 
 };
 
 var startQuiz = function(studentQuestion){   
-
-    //Keeping track of the questions
-    //nextQuestion++;
 
     //question
     var question = document.getElementById("main-content");  //middle div
@@ -188,6 +189,7 @@ var continueQuestions = function(studentQuestion,lastAns){
     buttonFour.textContent = studentQuestion.ansFour;
 
     //************************** */
+
     //The solution from the previous question
 
     //multiple choice
@@ -203,7 +205,6 @@ var continueQuestions = function(studentQuestion,lastAns){
     listEl.appendChild(resOutput);
     listLocation.appendChild(listEl);
   
-
     //************************** */
 
     //Pass correct answer
@@ -216,25 +217,19 @@ var continueQuestions = function(studentQuestion,lastAns){
     buttonFour.addEventListener("click",checkingSolution);
 }
 
-//Timer function
-var counter = 20;
 var countDown = function(){
     //Right side 
-    //var rightSide = document.querySelector();
-    setInterval(countDown, 1000);
+
+    counter--;
 
     //**************** Display the time at the top */
     var countDownClock = document.querySelector("#right");
     countDownClock.innerHTML = "Time: " + counter;
-
-    counter--;
+    
     if(counter === 0){
-        //****** Go to final score ******/
-        alert("blastoff");
+        //Go to grades page immediately
         clearInterval(startCountDown);
-
-        countDownClock.remove();
-        //remove it and add up the score so far
+        window.location.href="grade.html";
     };
 };
 
@@ -242,7 +237,7 @@ var countDown = function(){
 var start = function(){
 
     //start the counter
-    //countDown();
+    startCountDown = setInterval(countDown, 1000);
 
     //Remove intro page...
     var para = document.getElementById("descrip");

@@ -41,3 +41,8 @@ h1, li{
 button{
     float: left;
 }
+
+#highScoreLinkLabel{
+    color: black;
+    list-style-type: none;
+}
