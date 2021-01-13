@@ -56,6 +56,29 @@
             listEl.textContent = outcome;
             listBundle.appendChild(listEl);            
 
+            //Button click actions
+            var resolveClick = function(event){
+
+                event.preventDefault();
+
+                var buttonClicked = event.target.id;
+
+                console.log("Buttton was clicked: " + buttonClicked);
+                
+                if (buttonClicked === "goBack"){
+                    window.location.href="index.html";
+                }else{
+                    localStorage.clear();   //clear data was clicked
+                }
+            }
+
+            //Button click events
+            var goBackButton = document.querySelector("#goBack");
+            goBackButton.addEventListener("click", resolveClick);
+
+            var goClearScoresButton = document.querySelector("#clearScores");
+            goClearScoresButton.addEventListener("click", resolveClick);
+
         </script>
         <!-- Bootstrap code -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
