@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!--CSS stylesheet link-->
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Timed Quiz</title>
+  </head>
+  <body>
+    <div class="container">
+
+        <div class="row">
+            <!--Inroder to create a centralized box of contents-->
+            <div class="col-2" id="left"></div>
+
+            <div class="col-8  middle" id="center"> <!-- **************** -->
+                <h1 id="main-content" style="font-weight: bold;"> 
+                    All Done!
+                </h1>
+                <p style="text-align: left; font-size: larger;" id="gradesResult">                    
+                </p>
+
+                <form class="form-inline" id="nameForm">
+                    <div class="form-group">
+                        <label for="usr" class="mr-3">Enter initials: </label> 
+                        <input type="text" class="form-control  mr-3" id="usr" name="username">                        
+                        <button type="submit" class="btn btn-primary" id="submit">Submit</button>                            
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-2" id="right">  
+            </div>
+        </div>
+
+        <script> 
+
+            // To retrieve
+            var storedData;   
+            storedData = localStorage.getItem("Total");
+            storedData = JSON.parse(storedData);
+
+            var finalScore = document.querySelector("#gradesResult");
+            finalScore.textContent = "Your final score is " + storedData;
+
+            //get user initials
+            var addHighScore = function(e){
+
+                e.preventDefault();
+                var userInitialsInput = document.querySelector("input[name='username']").value;
+
+                //console.log("Initials were "+ userInitialsInput);
+
+                localStorage.setItem("Name",JSON.stringify(userInitialsInput));
+                window.location.href = "high-scores.html"
+            }
+
+            var formEl = document.querySelector("#nameForm");
+            formEl.addEventListener("submit",addHighScore);
+
+        </script>
+        <!-- Bootstrap code -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </div>  
+</body>
+</html>

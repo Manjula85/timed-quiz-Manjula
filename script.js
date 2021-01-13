@@ -1,7 +1,7 @@
 //Questions
 
 var firstQuestion = {
-    question: "Commonly used data types DO Not include:",
+    question: "(1)3 Commonly used data types DO Not include:",
     ansOne: "1. string",
     ansTwo:"2. booleans",
     ansThree: "3. alerts",
@@ -10,7 +10,7 @@ var firstQuestion = {
 };
 
 var secondQuestion = {
-    question: "The condition in an if/else statement is enclosed with _____.",
+    question: "(2)3 The condition in an if/else statement is enclosed with _____.",
     ansOne: "1. quotes",
     ansTwo:"2. curly brackets",
     ansThree: "3. parenthesis",
@@ -19,7 +19,7 @@ var secondQuestion = {
 };
 
 var thirdQuestion = {
-    question: "Array in JavaScript can be used to store _____.",
+    question: "(3)4 Array in JavaScript can be used to store _____.",
     ansOne: "1. numbers and strings",
     ansTwo:"2. other arrays",
     ansThree: "3. booleans",
@@ -27,17 +27,9 @@ var thirdQuestion = {
     correctAns: 4
 };
 
-var fourthQuestion = {
-    question: "String values must be enclosed within _____ when being assigned to variables.",
-    ansOne: "1. commas",
-    ansTwo:"2. curly brackets",
-    ansThree: "3. quotes",
-    ansFour: "4. parenthesis",
-    correctAns: 3
-};
 
 var fourthQuestion = {
-    question: "String values must be enclosed within _____ when being assigned to variables.",
+    question: "(4)3 String values must be enclosed within _____ when being assigned to variables.",
     ansOne: "1.commas",
     ansTwo:"2. curly brackets",
     ansThree: "3. quotes",
@@ -46,7 +38,7 @@ var fourthQuestion = {
 };
 
 var fifthQuestion = {
-    question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+    question: "(5)4 A very useful tool used during development and debugging for printing content to the debugger is:",
     ansOne: "1. JavaScript",
     ansTwo:"2. terminal/bash",
     ansThree: "3. for loops",
@@ -67,6 +59,9 @@ var nextQuestion = 0;
 //So that I can show it at the bottom of the questions
 var quizResult = 0;
 
+//Final grade
+finalGrade = 0;
+
 //checking solution
 var checkingSolution = function(event){
 
@@ -74,16 +69,13 @@ var checkingSolution = function(event){
     var targetEl = event.target.id;
     targetEl = parseInt(targetEl);
 
-
-    console.dir(event);
-    //localStorage.setItem()
-
-    //console.log("target: " + targetEl);
-    //console.log("quiz answer: " + quizAnswer);
+    //Keeping track of the questions
+    nextQuestion++;   
     
     if(targetEl === quizAnswer){
         quizResult = "Correct!";
-        nextQuestion++;   //Add to the total score
+        finalGrade++;
+        console.log("This is the Final grade stuff: "+ finalGrade);
     }else{
         quizResult = "Wrong!"
     }
@@ -92,17 +84,17 @@ var checkingSolution = function(event){
     line.remove();
     resOutput.remove();
 
-
     //Loading the second question here
     var allQuestions = [firstQuestion,secondQuestion,thirdQuestion,fourthQuestion,fifthQuestion];
     //to loop through each question and get the final total
     //i=1 because the first question has already been asked
 
     //removing the existing buttons first
-    if(nextQuestion <= allQuestions.length){
+    if(nextQuestion < allQuestions.length){
         continueQuestions(allQuestions[nextQuestion]);
     }else{
-        //meaning it has reached the end go to scoring
+        localStorage.setItem("Total",JSON.stringify(finalGrade));
+        window.location.href = "grade.html";
     }
 
     //showing the quizResult of the prevous page at the bottom 
@@ -111,7 +103,7 @@ var checkingSolution = function(event){
 var startQuiz = function(studentQuestion){   
 
     //Keeping track of the questions
-    nextQuestion++;
+    //nextQuestion++;
 
     //question
     var question = document.getElementById("main-content");  //middle div
@@ -174,9 +166,6 @@ resOutput.className = "preResult";
 
 //the rest of the quesitons
 var continueQuestions = function(studentQuestion,lastAns){
-
-    //Keeping track of the questions
-    nextQuestion++;    
 
     //question
     var question = document.getElementById("main-content");  //h1 element

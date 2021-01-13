@@ -33,3 +33,11 @@
     color:gray;
     background-color:gray
 }
+
+h1, li{
+    text-align: left;
+}
+
+button{
+    float: left;
+}

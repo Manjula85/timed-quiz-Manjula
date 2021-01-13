@@ -16,32 +16,48 @@
   <body>
     <div class="container">
 
-        <div class="row">
+        <div class="row .float-left">
             <!--Inroder to create a centralized box of contents-->
-            <div class="col-2" id="left"> View high scores </div>
+            <div class="col-2" id="left"></div>
 
             <div class="col-8" id="center"> <!-- **************** -->
-                <h1 class="mb-4" id="main-content" style="font-weight: bold; text-align: center;"> 
-                    Coding Quiz Challenge
+                <h1 id="main-content" style="font-weight: bold;"> 
+                    All Done!
                 </h1>
-                <p id="descrip">
-                    Try to answer the follwoing code-related questions within the time limit. Keep in mind that incorrent answers will penalize your score/time by ten secods!
-                </p>
-                    <ul class='list group' id="allOptions">
-                        <li class='list-group-item border-0 rounded .w-25' id="begin"></li>
-                            <button type="button" class="btn btn-primary" id="start" style="float: none;">
-                                Start Quiz 
-                            </button>
-                         </li>
-                    </ul>
+                <ul class="list-group mb-3" id="list">
+
+                </ul>
+
+                <button type="button" class="btn btn-primary mr-3" id="goBack">Go back</button>  
+                <button type="button" class="btn btn-primary" id="clearScores">Clear high scores</button>  
+
             </div>
 
             <div class="col-2" id="right">  
             </div>
         </div>
 
-        <script src="script.js"> </script>
+        <script> 
 
+            // To retrieve
+            var storedName = localStorage.getItem("Name");
+            storedName = JSON.parse(storedName);
+
+            var storedGrade = localStorage.getItem("Total");
+            storedGrade = JSON.parse(storedGrade);
+
+            var outcome = storedName + " - " + storedGrade;
+
+            //creating a new high score entry
+            var listBundle = document.querySelector("#list");
+
+            var listEl = document.createElement("li");
+            listEl.classList = "list-group-item";
+            listEl.textContent = outcome;
+            listBundle.appendChild(listEl);            
+
+        </script>
+        <!-- Bootstrap code -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
